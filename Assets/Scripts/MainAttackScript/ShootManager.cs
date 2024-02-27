@@ -16,6 +16,8 @@ public class ShootManager : MonoBehaviour
     private BulletSpawner m_bulletSpawner;
     private InventoryManager m_inventory;
 
+    private AudioSource m_audioSource; // audiosource variable
+
     // Live variables
     private float m_lastFire1;
     private float m_lastFire2;
@@ -27,10 +29,15 @@ public class ShootManager : MonoBehaviour
         if (weapon is Arm2) m_secondary = weapon as Arm2;
     }
 
+    public AudioClip gunSound; // so we can add the gun shot sound on the inspector
+
     void Start()
     {
         //need to null check A1 somehow
         m_inventory = FindObjectOfType<InventoryManager>();
+
+        m_audioSource = GetComponent<AudioSource>(); // Get AudioSource from the GameObject
+
 
         m_bulletSpawner = new BulletSpawner(gameObject, m_shootPoint);
         singleShot = new SingleShot(gameObject, m_bulletSpawner);
@@ -39,6 +46,21 @@ public class ShootManager : MonoBehaviour
 
         m_lastFire1 = 100.0f;
         m_lastFire2 = 100.0f;
+
+        singleShot.OnShoot += PlayGunSound;
+        spreadShot.OnShoot += PlayGunSound;
+    }
+
+    private void PlayGunSound(Vector3 direction)
+    {
+        if( m_audioSource == null )
+            m_audioSource = GetComponent<AudioSource>();
+
+        // Check if gunSound is assigned and play the sound
+        if (gunSound != null && m_audioSource != null)
+        {
+            m_audioSource.PlayOneShot(gunSound);
+        }
     }
 
     private void Fire( Weapon weapon, ref float lastFire )

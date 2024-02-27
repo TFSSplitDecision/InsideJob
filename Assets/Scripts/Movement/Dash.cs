@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 /// <summary>
@@ -32,6 +33,9 @@ public class Dash
     [SerializeField, ReadOnly] private float m_recoveryTimer;
 
     public bool isDashing => m_dashing;
+
+    // Event to indicate when the dash ability is activated
+    public event UnityAction OnDashActivated;
 
     /// <summary>
     /// Use this in place of a constructor! 
@@ -66,6 +70,9 @@ public class Dash
         // Guard conditions
         if (m_dashing) return;
         if (m_remainingCharges <= 0) return;
+
+        // Call the OnDashActivated event
+        OnDashActivated?.Invoke();
 
         m_dashing = true;
         m_startPos = m_transform.position;

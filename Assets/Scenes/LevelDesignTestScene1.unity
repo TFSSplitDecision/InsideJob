@@ -3628,6 +3628,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2647174813737636195, guid: e8c6239951b4f9549bcba413b67cb9cb, type: 3}
+      propertyPath: gunSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c63b360f10205446b51df38ba366139, type: 3}
     - target: {fileID: 7417081368189948496, guid: e8c6239951b4f9549bcba413b67cb9cb, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -3680,6 +3684,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7451278981545752457, guid: e8c6239951b4f9549bcba413b67cb9cb, type: 3}
+      propertyPath: dashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 331778234f7208440b7e39427ce0b164, type: 3}
     - target: {fileID: 7900743766096546026, guid: e8c6239951b4f9549bcba413b67cb9cb, type: 3}
       propertyPath: m_Name
       value: Player(Astra)

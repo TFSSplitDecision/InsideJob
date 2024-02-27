@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Shoots multiple bullets in a spread angle
@@ -19,6 +20,11 @@ public class SpreadShot : BaseShot
         float fullAngle = -spreadAngle / 2f;
 
         Vector3 bulletDirection = m_transform.forward;
+
+        // cannot invoke OnShoot directly for some reason
+        // that's why I'm calling this function in BaseSHot
+        InvokeOnShoot(m_transform.forward);
+
         bulletDirection = Quaternion.Euler(0f, -spreadAngle, 0f) * bulletDirection;
 
         for (int i = 0; i < bulletCount; i++)
@@ -27,6 +33,8 @@ public class SpreadShot : BaseShot
             bulletDirection = bulletRotation * bulletDirection;
             m_bulletSpawner.SpawnBullet(bulletDirection, bullet, bulletDamage);
         }
+
+        
     }
         
 }
